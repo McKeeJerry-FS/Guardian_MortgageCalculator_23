@@ -71,7 +71,7 @@
                         <form action="" class="" id="rateForm">
                             <div class="form-group m-2">
                                 <label for="loanAmount">Loan Amount:</label>
-                                <input type="number" name="loanAmount" id="loanAmount" placeholder="0" class="form-control">
+                                <input type="number" name="loanAmount" id="loanAmount" placeholder="$0" class="form-control">
                             </div>
                             <div class="form-group m-2">
                                 <label for="term">Term (Months):</label>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="form-group m-2">
                                 <label for="interestRate">Interest Rate:</label>
-                                <input type="text" name="interestRate" id="interestRate" placeholder="0" class="form-control">
+                                <input type="text" name="interestRate" id="interestRate" placeholder="0%" class="form-control">
                             </div>
                             <button class="btn btn-primary m-2" type="button" id="calcBtn" onclick="calculateRates()">Calculate</button>
                         </form>
@@ -91,7 +91,7 @@
                     <div class="card-body">
                         <div class="text-center m-2">
                             <h2 class="display-5"> Your Monthly Payments:</h2>
-                            <h4 class="text-center display-6" id="monthlyPmt">$426.65</h4>
+                            <h4 class="text-center display-6" id="monthlyPmt"></h4>
                         </div>
                         <div class="gy-2 mt-5">
                             <h5 class="m-2" id="principle"> Total Principle:</h5>
@@ -106,7 +106,7 @@
             <div class="card mt-3 shadow border-3">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered mt-2">
+                        <table class="table table-striped border-2 mt-2" id="monthlyPmtTable">
                             <thead class="table-dark">
                                 <tr>
                                     <th>Month</th>
@@ -117,7 +117,7 @@
                                     <th>Balance</th>
                                 </tr>
                             </thead>
-                            <tbody id="pmtTable">
+                            <tbody id="pmtTable" class="table-striped">
                                 <!-- Pmt information goes here -->
                             </tbody>
                         </table>

@@ -78,10 +78,10 @@
                                 <input type="number" name="term" id="term" placeholder="0" class="form-control">
                             </div>
                             <div class="form-group m-2">
-                                <label for="interest">Interest Rate:</label>
-                                <input type="number" name="interest" id="interest" placeholder="0" class="form-control">
+                                <label for="interestRate">Interest Rate:</label>
+                                <input type="text" name="interestRate" id="interestRate" placeholder="0" class="form-control">
                             </div>
-                            <button class="btn btn-primary m-2" type="submit" id="calcBtn">Calculate</button>
+                            <button class="btn btn-primary m-2" type="button" id="calcBtn" onclick="calculateRates()">Calculate</button>
                         </form>
                     </div>
                 </div>
@@ -117,63 +117,8 @@
                                     <th>Balance</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>471.78</td>
-                                    <td>367.71</td>
-                                    <td>104.17</td>
-                                    <td>104.17</td>
-                                    <td>24632.39</td>
-                                </tr>
+                            <tbody id="pmtTable">
+                                <!-- Pmt information goes here -->
                             </tbody>
                         </table>
                     </div>
@@ -218,5 +163,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom JS -->
     <script src="/js/site.js"></script>
+    <script>
+        let calcBtn = document.getElementById('calcBtn');
+        calcBtn.addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

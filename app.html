@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-    <title>APP NAME: By Jerry McKee Jr</title>
+    <title>Mortgage Calculator: By Jerry McKee Jr</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="/img/favicon.ico" />
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html">
-                <img src="/img/JM_Logo_Light-removebg-preview.png" alt="" height="50">APP NAME</a>
+                <img src="/img/JM_Logo_Light-removebg-preview.png" alt="" height="50">Mortgage Calculator</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -61,10 +61,125 @@
         </div>
     </nav>
     
-    <main class="container">
-        <h1>APP UI GOES HERE</h1>
-        <input type="text" class="form-control my-3" placeholder="Enter a message" style="width: 10rem" id="message">
-        <button id="btnSubmit" class="btn btn-primary">Display Message</button>
+    <main class="container py-3">
+        <h1 class="display-2 text-center">Mortgage Calculator</h1>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card mt-3 shadow h-100 border-3">
+                    <div class="card-body">
+                        <h2 class="display-6">Please Input Data</h2>
+                        <form action="" class="" id="rateForm">
+                            <div class="form-group m-2">
+                                <label for="loanAmount">Loan Amount:</label>
+                                <input type="number" name="loanAmount" id="loanAmount" placeholder="0" class="form-control">
+                            </div>
+                            <div class="form-group m-2">
+                                <label for="term">Term (Months):</label>
+                                <input type="number" name="term" id="term" placeholder="0" class="form-control">
+                            </div>
+                            <div class="form-group m-2">
+                                <label for="interest">Interest Rate:</label>
+                                <input type="number" name="interest" id="interest" placeholder="0" class="form-control">
+                            </div>
+                            <button class="btn btn-primary m-2" type="submit" id="calcBtn">Calculate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col order-">
+                <div class="card mt-3 shadow h-100 border-3">
+                    <div class="card-body">
+                        <div class="text-center m-2">
+                            <h2 class="display-5"> Your Monthly Payments:</h2>
+                            <h4 class="text-center display-6" id="monthlyPmt">$426.65</h4>
+                        </div>
+                        <div class="gy-2 mt-5">
+                            <h5 class="m-2" id="principle"> Total Principle:</h5>
+                            <h5 class="m-2" id="totInterest"> Total Interest:</h5>
+                            <h5 class="m-2" id="totCost"> Total Cost:</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="card mt-3 shadow w-100 border-3">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered mt-2">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Payment</th>
+                                    <th>Principle</th>
+                                    <th>Interest</th>
+                                    <th>Total Interest</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>471.78</td>
+                                    <td>367.71</td>
+                                    <td>104.17</td>
+                                    <td>104.17</td>
+                                    <td>24632.39</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </main>
 
     <!-- Footer -->
@@ -103,12 +218,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom JS -->
     <script src="/js/site.js"></script>
-    <script>
-        // get the button on the page and assign to a variable
-        let button = document.getElementById('btnSubmit');
-
-        // tell button to run displayMessage function when clicked
-        button.addEventListener('click', displayMessage);
-    </script>
 </body>
 </html>

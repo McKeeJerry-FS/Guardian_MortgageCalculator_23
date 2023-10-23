@@ -5,7 +5,7 @@ function displayMessage() {
     Swal.fire(
         {
             backdrop: false,
-            title: 'APP NAME',
+            title: 'Mortgage Calculator',
             text: msg, // <-- replace this with the variable
         }
     );

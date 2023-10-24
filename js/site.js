@@ -23,8 +23,9 @@ function getValues(){
             rate : rate
         }
         
-        calculateStats(values);
-         let monthlyPayments = calculateMonthlyPayments(values);
+        let totals = calculateStats(principle, term, rate);
+        displayStats(totals);
+        let monthlyPayments = calculateMonthlyPayments(principle, term, rate, totals.monthPmt);
         displayMonthlyPmts(monthlyPayments);
         
     }
@@ -34,96 +35,87 @@ function getValues(){
 
 // display the total values in the stats column
 // display the stats for the loan
-function calculateStats(values){
+function calculateStats(principle, term, rate){
     
-    let monthPmt = (values.principle * (values.rate/1200)) / (1- Math.pow(1 + values.rate/1200, -values.term));
+    let monthPmt = (principle * (rate/1200)) / (1- Math.pow(1 + rate/1200, -term));
     
-    let totalCost = monthPmt * values.term;
+    let totalCost = monthPmt * term;
     
-    let totalInt = totalCost - values.principle;
-    
-    let totals = {
-        monthPmt : monthPmt,
-        totalCost : totalCost,
-        totalInt : totalInt,
-        totalPrinciple : values.principle
+    let totalInt = totalCost - principle;
+
+    let totalPrinciple = principle;
+    let stats = {
+        monthPmt, totalCost, totalInt, totalPrinciple
     }
-    
-    displayStats(totals);
+    return stats;
+
 }
 
 function displayStats(totals){
-    // let formatOptions = {
-    //     style: 'currency',
-    //     currency: USD
-    // }
+    let formatOptions = {
+        style: 'currency',
+        currency: 'USD'
+    }
 
     let totalPrincipleView = document.getElementById('principle');
-    totalPrincipleView.textContent = `Total Principle: \$${totals.totalPrinciple.toFixed(2).toLocaleString()}`;
+    totalPrincipleView.textContent = `Total Principle: ${totals.totalPrinciple.toLocaleString('en-US', formatOptions)}`;
 
     let monthlyPmtView = document.getElementById('monthlyPmt');
-    monthlyPmtView.innerText = `\$${totals.monthPmt.toFixed(2).toLocaleString()}`;
+    monthlyPmtView.innerText = `${totals.monthPmt.toLocaleString('en-US', formatOptions)}`;
 
     let totalCostView = document.getElementById('totCost');
-    totalCostView.innerText = `Toatl Cost: \$${totals.totalCost.toFixed(2).toLocaleString()}`;
+    totalCostView.innerText = `Toatl Cost: ${totals.totalCost.toLocaleString('en-US', formatOptions)}`;
 
     let totalInterestView = document.getElementById('totInterest');
-    totalInterestView.innerText = `Total Interest: \$${totals.totalInt.toFixed(2).toLocaleString()}`;
+    totalInterestView.innerText = `Total Interest: ${totals.totalInt.toLocaleString('en-US', formatOptions)}`;
 }
 
 // display the values in the table per each month
-function calculateMonthlyPayments(){
+function calculateMonthlyPayments(principle, term, rate, monthlyPayment){
+    let balance = principle;
+    let totalInterest = 0;
+    let pmtsArray = [];
+    for (let month = 1; month <= term; month++){
+        let interestPmt = balance * (rate / 1200);
+        let principlePmt = monthlyPayment - interestPmt;
+        balance -= principlePmt;
+        totalInterest += rate;
 
+        let paymentObj = {
+            month : month,
+            payment : monthlyPayment,
+            principle : principlePmt,
+            rate : interestPmt,
+            totalInterest : totalInterest,
+            balance : balance
+        }
+        pmtsArray.push(paymentObj);
+    }
 
-
+    return pmtsArray;
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-function displayMonthlyPmts(va){
+// display
+function displayMonthlyPmts(paymentsArr){
     
+    let tableRowTemplate = document.getElementById('monthlyPmtTemplate');
     let table = document.getElementById('monthlyPmtTable');
     
-    let currentPrinciple = '';
-    for (let i = 1; i <= term; i++){
+    for (let i = 1; i <= paymentsArr.length; i++){
         
-        // create the table row
-        let pmtRow = document.createElement('tr');
-        
-        // data column 'Month'
-        let term = i;
-        let month = document.createElement('td');
-        month.innerText = term;
-        pmtRow.appendChild(month);
-        
-        // Data column Month Payment
-        let mPmt = document.createElement('td');
-        let monthlyPmt = calculateMonthlyPayments();
-        mPmt.innerHTML = monthlyPmt.toFixed(2).toLocaleString();
-        pmtRow.appendChild(mPmt);
+        let payment = paymentsArr[i];
+        let pmtRow = tableRowTemplate.content.cloneNode(true);
 
-        // Data column for Current princple
-        
+        let tableCells = pmtRow.querySelectorAll('td');
+        tableCells[0].textContent = payment.month;
+        tableCells[1].textContent = `\$${payment.payment.toFixed(2).toLocaleString()}`;
+        tableCells[2].textContent = `\$${payment.principle.toFixed(2).toLocaleString()}`;
+        tableCells[3].textContent = `\$${payment.rate.toFixed(2).toLocaleString()}`;
+        tableCells[4].textContent = `\$${payment.totalInterest.toFixed(2).toLocaleString()}`;
+        tableCells[5].textContent = `\$${Math.abs(payment.balance).toFixed(2).toLocaleString()}`;
 
-        // Data column for Monthly Interest
-        
-        // Data column for total interest paid
-
-        // Data column for remaining balance
-        
-        // add the row to the table
         table.appendChild(pmtRow);
 
 
